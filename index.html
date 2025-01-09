@@ -13,7 +13,7 @@
         <div class="logo" aria-label="Logo de l'entreprise">Logo</div>
         <div id="authLinks">
             <button class="logout-button" id="loginButton" onclick="openLoginModal()" aria-label="Se connecter">Connexion</button>
-            <button class="logout-button" id="logoutButton" style="display: none;" onclick="logout()" aria-label="Se déconnecter">Déconnexion</button>
+            <button class="logout-button" id="logoutButton" style="display: none;" href="logout.php" aria-label="Se déconnecter">Déconnexion</button>
             <span id="userWelcome" style="display: none;" aria-live="polite">Bienvenue, <span id="userName"></span></span>
         </div>
     </div>
@@ -70,7 +70,7 @@
 
                     <label for="confirmPassword">Confirmer le mot de passe :</label>
                     <input type="password" id="confirmPassword" name="confirmPassword" required aria-required="true">
-
+                    <div id="passwordError" style="color: red; font-size: 0.9em;"></div>
                     <button type="submit" aria-label="Créer un compte">Créer un compte</button>
                 </div>
             </form>

@@ -31,20 +31,61 @@ document.getElementById('loginForm').onsubmit = function (event) {
     login(email, password);
 };
 
-document.getElementById('registerForm').onsubmit = function (event) {
+window.addEventListener('DOMContentLoaded', () => {
+    fetch('check_session.php')
+        .then(response => response.json())
+        .then(data => {
+            if (data.connected) {
+                const navBar = document.querySelector('.nav-bar');
+                const loginLink = document.getElementById('loginLink');
+                const userWelcome = document.getElementById('userWelcome');
+
+                loginLink.style.display = 'none';
+                userWelcome.style.display = 'inline';
+                userWelcome.innerHTML = `Bienvenue, ${data.username} | <a href="#" onclick="logout()">Déconnexion</a>`;
+            }
+        })
+        .catch(error => console.error('Erreur :', error));
+});
+
+document.getElementById('registerForm').addEventListener('submit', function (event) {
     event.preventDefault();
-    const newUsername = document.getElementById('newUsername').value;
-    const newEmail = document.getElementById('newEmail').value;
-    const newPassword = document.getElementById('newPassword').value;
+
+    const username = document.getElementById('newUsername').value;
+    const email = document.getElementById('newEmail').value;
+    const password = document.getElementById('newPassword').value;
     const confirmPassword = document.getElementById('confirmPassword').value;
 
-    if (newPassword !== confirmPassword) {
-        alert('Les mots de passe ne correspondent pas.');
+    const errorDiv = document.getElementById('passwordError');
+
+    if (password !== confirmPassword) {
+        errorDiv.textContent = "Le mot de passe et sa confirmation ne correspondent pas.";
         return;
     }
 
-    registerUser(newUsername, newEmail, newPassword);
-};
+    errorDiv.textContent = ""; // Efface les erreurs
+
+    // Envoyer les données au script PHP
+    fetch('register.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, email, password }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            console.error(data.error);
+            errorDiv.textContent = "Erreur : " + data.error;
+        } else {
+            console.log(data.message);
+            // Redirige l'utilisateur vers la page d'accueil
+            window.location.href = 'index.html';
+        }
+    })
+    .catch(error => console.error('Erreur :', error));
+});
 
 // Fonction pour enregistrer un utilisateur
 function registerUser(username, email, password) {
