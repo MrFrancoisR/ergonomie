@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,49 +7,52 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="navbar">
-        <div class="logo">Logo</div>
+    
+    <!-- Navbar avec rôle de navigation -->
+    <div class="navbar" role="navigation">
+        <div class="logo" aria-label="Logo de l'entreprise">Logo</div>
         <div id="authLinks">
-            <button class="logout-button" id="loginButton" onclick="openLoginModal()">Connexion</button>
-            <button class="logout-button" id="logoutButton" style="display: none;" onclick="logout()">Déconnexion</button>
-            <span id="userWelcome" style="display: none;">Bienvenue, <span id="userName"></span></span>
+            <button class="logout-button" id="loginButton" onclick="openLoginModal()" aria-label="Se connecter">Connexion</button>
+            <button class="logout-button" id="logoutButton" style="display: none;" onclick="logout()" aria-label="Se déconnecter">Déconnexion</button>
+            <span id="userWelcome" style="display: none;" aria-live="polite">Bienvenue, <span id="userName"></span></span>
         </div>
     </div>
 
-    </div>
     <div class="main-content">
-        <div class="sidebar">
+        <div class="sidebar" aria-label="Menu des documents">
             <ul class="file-list">
-                <li><a href="#" onclick="loadMarkdownFile('fichiers/accueil.txt')">Accueil</a></li>
-                <li><a href="#" onclick="loadMarkdownFile('fichiers/pieddanslaporte.txt')">Le pied dans la porte</a></li>
-                <li><a href="#" onclick="loadMarkdownFile('fichiers/theme2.txt')">Thèmes n°2</a></li>
-                <li><a href="#" onclick="loadMarkdownFile('fichiers/theme3.txt')">Thèmes n°3</a></li>
-                <li><a href="#" onclick="loadMarkdownFile('fichiers/Etude_Keith.txt')">Le Biais d'Optimisme</a></li>
+                <li><a href="#" onclick="loadMarkdownFile('fichiers/accueil.txt')" aria-label="Page d'accueil">Accueil</a></li>
+                <li><a href="#" onclick="loadMarkdownFile('fichiers/pieddanslaporte.txt')" aria-label="Le pied dans la porte">Le pied dans la porte</a></li>
+                <li><a href="#" onclick="loadMarkdownFile('fichiers/theme2.txt')" aria-label="Thème numéro 2">Thèmes n°2</a></li>
+                <li><a href="#" onclick="loadMarkdownFile('fichiers/theme3.txt')" aria-label="Thème numéro 3">Thèmes n°3</a></li>
+                <li><a href="#" onclick="loadMarkdownFile('fichiers/Etude_Keith.txt')" aria-label="Étude sur le biais d'optimisme">Le Biais d'Optimisme</a></li>
             </ul>
         </div>
         <div class="documents-list">
-            <div id="markdown-content" class="markdown-content">
+            <div id="markdown-content" class="markdown-content" aria-live="polite">
                 <!-- Le contenu des fichiers markdown sera affiché ici -->
             </div>
         </div>
     </div>
 
     <!-- Fenêtre modale de connexion -->
-    <div id="loginModal" class="modal">
+    <div id="loginModal" class="modal" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
         <div class="modal-content">
-            <span class="close" onclick="closeLoginModal()">&times;</span>
+            <span class="close" onclick="closeLoginModal()" aria-label="Fermer la fenêtre modale">&times;</span>
             <h2 id="modalTitle">Connexion</h2>
 
             <!-- Formulaire de connexion -->
             <form id="loginForm" onsubmit="login(event)">
                 <div id="loginSection">
                     <label for="username">Nom d'utilisateur :</label>
-                    <input type="text" id="username" name="username" required>
+                    <input type="text" id="username" name="username" required aria-required="true" aria-describedby="usernameDesc">
+                    <span id="usernameDesc" class="visually-hidden">Saisir votre nom d'utilisateur.</span>
 
                     <label for="password">Mot de passe :</label>
-                    <input type="password" id="password" name="password" required>
+                    <input type="password" id="password" name="password" required aria-required="true" aria-describedby="passwordDesc">
+                    <span id="passwordDesc" class="visually-hidden">Saisir votre mot de passe.</span>
 
-                    <button type="submit">Se connecter</button>
+                    <button type="submit" aria-label="Se connecter">Se connecter</button>
                 </div>
             </form>
 
@@ -57,29 +60,32 @@
             <form id="registerForm" style="display: none;">
                 <div id="registerSection">
                     <label for="newUsername">Nom d'utilisateur :</label>
-                    <input type="text" id="newUsername" name="newUsername" required>
+                    <input type="text" id="newUsername" name="newUsername" required aria-required="true">
 
                     <label for="newEmail">Email :</label>
-                    <input type="email" id="newEmail" name="newEmail" required>
+                    <input type="email" id="newEmail" name="newEmail" required aria-required="true">
 
                     <label for="newPassword">Mot de passe :</label>
-                    <input type="password" id="newPassword" name="newPassword" required>
+                    <input type="password" id="newPassword" name="newPassword" required aria-required="true">
 
                     <label for="confirmPassword">Confirmer le mot de passe :</label>
-                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required aria-required="true">
 
-                    <button type="submit">Créer un compte</button>
+                    <button type="submit" aria-label="Créer un compte">Créer un compte</button>
                 </div>
             </form>
 
             <!-- Boutons pour basculer entre les formulaires -->
             <div id="toggleSection">
-                <p id="toggleMessage">Pas encore de compte ? <a href="#" onclick="toggleModalForm()">Créer un compte</a></p>
+                <p id="toggleMessage">Pas encore de compte ? <a href="#" onclick="toggleModalForm()" aria-label="Passer à l'inscription">Créer un compte</a></p>
             </div>
         </div>
     </div>
 
-
+    <!-- Pied de page -->
+    <footer>
+        <p>© 2025 - Votre site d'information</p>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/marked@2.0.0/lib/marked.min.js"></script>
     <script src="script.js"></script>
