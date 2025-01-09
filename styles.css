@@ -3,6 +3,9 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* 100% de la hauteur de la fenêtre */
 }
 
 /* Navbar */
@@ -31,19 +34,20 @@ body {
 /* Main content */
 .main-content {
     display: flex;
-    height: calc(100vh - 50px); /* Reste de l'écran sous la navbar */
-
+    flex-grow: 1; /* Permet à .main-content de prendre tout l'espace restant */
 }
 
+/* Sidebar */
 .sidebar {
     width: 200px; /* Largeur fixe de la sidebar */
     background-color: #f4f4f4;
     padding: 10px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    height: 100%; /* Prend toute la hauteur de .main-content */
     flex-shrink: 0; /* Empêche la réduction de la largeur */
+    height: 100%; /* Prend toute la hauteur disponible */
+    position: sticky; /* Pour qu'elle reste fixe lors du défilement */
+    top: 0; /* Fixe le haut de la sidebar */
 }
-
 
 .file-list {
     list-style: none;
@@ -64,14 +68,14 @@ body {
     background-color: #ddd;
 }
 
+/* Documents list */
 .documents-list {
-    flex-grow: 1;
+    flex-grow: 1; /* Permet à .documents-list de s'étendre pour remplir l'espace restant */
     padding: 20px;
     display: flex;
     flex-direction: column;
+    overflow-y: auto; /* Permet de faire défiler le contenu si nécessaire */
 }
-
-
 
 /* Styles pour la fenêtre modale */
 .modal {
@@ -81,7 +85,6 @@ body {
     left: 40%;
     width: 100%;
     height: 100%;
-
     justify-content: center;
     align-items: center;
     z-index: 1000;
@@ -127,10 +130,8 @@ body {
 }
 
 footer {
-background-color: #333;
-color: white;
-text-align: center;
-position: fixed;
-bottom: 0;
-width: 100%;
+    text-align: center;
+    padding: 10px;
+    background-color: #f1f1f1;
+    position: relative; /* Assure que le footer se place en bas du document */
 }
