@@ -15,10 +15,10 @@ function updateUI() {
     if (username) {
         document.getElementById("userName").textContent = username;
         document.getElementById("userWelcome").style.display = "inline";
-        document.getElementById("loginLink").style.display = "none";
+        document.getElementById("loginButton").style.display = "none";
     } else {
         document.getElementById("userWelcome").style.display = "none";
-        document.getElementById("loginLink").style.display = "inline";
+        document.getElementById("loginButton").style.display = "inline";
     }
 }
 
@@ -82,33 +82,11 @@ function login(email, password) {
         .catch(error => console.error('Erreur:', error));
 }
 
-// Charger le contenu de la page
-function changeContent(page, filePath) {
-    const content = document.getElementById('content');
-
-    // Charger le contenu depuis le fichier texte
-    fetch(filePath)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`Impossible de charger le fichier : ${filePath}`);
-            }
-            return response.text();
-        })
-        .then(data => {
-            content.innerHTML = `<h1>${page}</h1><p>${data}</p>`;
-        })
-        .catch(error => {
-            content.innerHTML = `
-                <h1>Erreur</h1>
-                <p>${error.message}</p>
-            `;
-        });
-}
 
 // Charger la page d'accueil par défaut
 window.onload = function () {
     updateUI(); // Vérifier si un utilisateur est déjà connecté au chargement de la page
-    changeContent('Accueil', 'accueil.txt');
+    loadMarkdownFile('fichiers/accueil.txt');
 };
 
 // Fonction pour ouvrir la fenêtre modale de connexion
