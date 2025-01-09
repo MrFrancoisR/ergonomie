@@ -22,31 +22,46 @@ function updateUI() {
     }
 }
 
-// Gestion des formulaires
 document.getElementById('loginForm').onsubmit = function (event) {
     event.preventDefault();
-    const email = document.getElementById('username').value;
+    const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
-    login(email, password);
+    login(username, password);
 };
 
 window.addEventListener('DOMContentLoaded', () => {
     fetch('check_session.php')
         .then(response => response.json())
         .then(data => {
-            if (data.connected) {
-                const navBar = document.querySelector('.nav-bar');
-                const loginLink = document.getElementById('loginButton');
-                const userWelcome = document.getElementById('userWelcome');
+            const loginLink = document.getElementById('loginButton');
+            const userWelcome = document.getElementById('userWelcome');
 
+            if (data.connected) {
+                // L'utilisateur est connecté
                 loginLink.style.display = 'none';
                 userWelcome.style.display = 'inline';
-                userWelcome.innerHTML = `Bienvenue, ${data.username} | <button class="logout-button" id="logoutButton" onclick="window.location.href='logout.php';" aria-label="Se déconnecter">Déconnexion</button>`;
+                userWelcome.innerHTML = `Bienvenue, ${data.username} | <button class="logout-button" id="logoutButton" onclick="logout()" aria-label="Se déconnecter">Déconnexion</button>`;
+            } else {
+                // L'utilisateur est déconnecté
+                loginLink.style.display = 'inline';
+                userWelcome.style.display = 'none';
+                userWelcome.innerHTML = ''; // Réinitialise le contenu
             }
         })
         .catch(error => console.error('Erreur :', error));
 });
+
+// Fonction de déconnexion
+function logout() {
+    fetch('logout.php')
+        .then(() => {
+            localStorage.removeItem('username'); // Supprime les données locales
+            window.location.reload(); // Recharge la page pour refléter l'état déconnecté
+        })
+        .catch(error => console.error('Erreur lors de la déconnexion :', error));
+}
+
 
 document.getElementById('registerForm').addEventListener('submit', function (event) {
     event.preventDefault();
@@ -103,26 +118,27 @@ function registerUser(username, email, password) {
         .catch(error => console.error('Erreur:', error));
 }
 
-// Fonction pour connecter un utilisateur
-function login(email, password) {
-    fetch('http://localhost:3000/login', {
+function login(username, password) {
+    fetch('login.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({ username, password }) // Utilise le username au lieu de l'email
     })
-        .then(response => response.json())
-        .then(data => {
-            if (data.username) {
-                alert(`Bienvenue, ${data.username} !`);
-                localStorage.setItem('username', data.username);
-                updateUI();
-            } else {
-                alert(data.message);
-            }
-        })
-        .catch(error => console.error('Erreur:', error));
-}
+    .then(response => response.json())
+    .then(data => {
+        if (data.username) {
+            // Stocke le nom d'utilisateur dans le localStorage
+            localStorage.setItem('username', data.username);
 
+            // Redirige l'utilisateur vers la page d'accueil
+            window.location.href = 'index.html';
+        } else {
+            // Affiche une alerte en cas d'erreur
+            alert(data.error);
+        }
+    })
+    .catch(error => console.error('Erreur:', error));
+}
 
 // Charger la page d'accueil par défaut
 window.onload = function () {
