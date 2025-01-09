@@ -148,3 +148,14 @@ window.onclick = function(event) {
         closeLoginModal();
     }
 };
+
+async function loadMarkdownFile(filename) {
+    try {
+        const response = await fetch(filename);
+        if (!response.ok) throw new Error(`Erreur lors du chargement de ${filename}`);
+        const markdownText = await response.text();
+        document.getElementById('markdown-content').innerHTML = marked(markdownText);
+    } catch (error) {
+        document.getElementById('markdown-content').innerHTML = `<p>${error.message}</p>`;
+    }
+}
