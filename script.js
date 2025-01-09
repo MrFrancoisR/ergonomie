@@ -37,12 +37,12 @@ window.addEventListener('DOMContentLoaded', () => {
         .then(data => {
             if (data.connected) {
                 const navBar = document.querySelector('.nav-bar');
-                const loginLink = document.getElementById('loginLink');
+                const loginLink = document.getElementById('loginButton');
                 const userWelcome = document.getElementById('userWelcome');
 
                 loginLink.style.display = 'none';
                 userWelcome.style.display = 'inline';
-                userWelcome.innerHTML = `Bienvenue, ${data.username} | <a href="#" onclick="logout()">Déconnexion</a>`;
+                userWelcome.innerHTML = `Bienvenue, ${data.username} | <button class="logout-button" id="logoutButton" onclick="window.location.href='logout.php';" aria-label="Se déconnecter">Déconnexion</button>`;
             }
         })
         .catch(error => console.error('Erreur :', error));
