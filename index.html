@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Web Dynamique</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="nav-bar">
+                <li><a href="#" onclick="changeContent('Accueil', 'accueil.txt')">Accueil</a></li>
+                <li><a href="#" onclick="changeContent('Le pied dans la porte', 'pieddanslaporte.txt')">Le pied dans la porte</a></li>
+                <li><a href="#" onclick="changeContent('Theme2', 'theme2.txt')">thèmes n°2 (à finir)</a></li>
+                <li><a href="#" onclick="changeContent('Le Biais d\'Optimisme', 'Etude_Keith.txt')">Le Biais d'Optimisme</a></li>
+                <li><a href="#" onclick="changeContent('Theme3', 'theme3.txt')">thèmes n°3 (à finir)</a></li>
+                <li><a href="#" onclick="openLoginModal()" id="loginLink">Connexion</a></li>
+                <li id="userWelcome" style="display: none;">Bienvenue, <span id="userName"></span> | <a href="#" onclick="logout()">Déconnexion</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div id="content">
+        </div>
+    </main>
+
+    <!-- Pied de page -->
+    <footer>
+        <h3>Outils d'aide à l'accessibilité :</h3>
+        <ul class="accessibility-tools">
+            <li>
+                <button onclick="toggleZoom()">Loupe grossissante</button>
+            </li>
+            <li>
+                <button onclick="toggleDaltonismMode()">Mode daltonien</button>
+            </li>
+            <li>
+                <button onclick="toggleHighContrast()">Contraste élevé</button>
+            </li>
+            <li>
+                <button onclick="toggleTextToSpeech()">Synthèse vocale</button>
+            </li>
+        </ul>
+    </footer>
+
+    <!-- Fenêtre modale de connexion -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeLoginModal()">&times;</span>
+            <h2 id="modalTitle">Connexion</h2>
+            
+            <!-- Formulaire de connexion -->
+            <form id="loginForm" onsubmit="login(event)">
+                <div id="loginSection">
+                    <label for="username">Nom d'utilisateur :</label>
+                    <input type="text" id="username" name="username" required>
+                    
+                    <label for="password">Mot de passe :</label>
+                    <input type="password" id="password" name="password" required>
+                    
+                    <button type="submit">Se connecter</button>
+                </div>
+            </form>
+    
+            <!-- Formulaire d'inscription -->
+            <form id="registerForm" style="display: none;">
+                <div id="registerSection">
+                    <label for="newUsername">Nom d'utilisateur :</label>
+                    <input type="text" id="newUsername" name="newUsername" required>
+                    
+                    <label for="newEmail">Email :</label>
+                    <input type="email" id="newEmail" name="newEmail" required>
+                    
+                    <label for="newPassword">Mot de passe :</label>
+                    <input type="password" id="newPassword" name="newPassword" required>
+                    
+                    <label for="confirmPassword">Confirmer le mot de passe :</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                    
+                    <button type="submit">Créer un compte</button>
+                </div>
+            </form>
+    
+            <!-- Boutons pour basculer entre les formulaires -->
+            <div id="toggleSection">
+                <p id="toggleMessage">Pas encore de compte ? <a href="#" onclick="toggleModalForm()">Créer un compte</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
