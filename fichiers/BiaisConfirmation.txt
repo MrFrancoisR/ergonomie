@@ -1,4 +1,4 @@
-##Le biais de confirmation
+# Le biais de confirmation
 
 Un biais cognitif est un raisonnement qui paraît intuitif mais qui conduit à un résultat erroné. Nous y sommes régulièrement confrontés dans notre quotidien, et de nombreux psychologues et chercheurs travaillent à les mettre en évidence. Cet essai a pour but de présenter l'un de ces biais : le biais de confirmation. Nous verrons dans un premier temps ce qu'est le biais de confirmation, le contexte dans lequel il agit, avant d'examiner des situations concrètes illustrant son application.
 

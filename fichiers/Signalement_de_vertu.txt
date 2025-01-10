@@ -1,4 +1,4 @@
-##Signalement de vertu
+# Signalement de vertu
 
 Le signalement de vertu est défini comme une posture morale visant à exprimer une
 solidarité pour une cause sans qu’il n’y ait de nécessité à ce que cette engagement ne soit
