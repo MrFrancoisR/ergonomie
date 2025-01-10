@@ -50,7 +50,7 @@
                     <label for="password">Mot de passe :</label>
                     <input type="password" id="password" name="password" required aria-required="true" aria-describedby="passwordDesc">
                     <span id="passwordDesc" class="visually-hidden">Saisir votre mot de passe.</span>
-                    <div id="LoginError" style="color: red; font-size: 0.9em;"></div>
+                    <div id="LoginError" style="color: red; font-size: 0.9em;" aria-live="assertive"></div>
                     <button type="submit" aria-label="Se connecter">Se connecter</button>
                 </div>
             </form>
@@ -69,7 +69,7 @@
 
                     <label for="confirmPassword">Confirmer le mot de passe :</label>
                     <input type="password" id="confirmPassword" name="confirmPassword" required aria-required="true">
-                    <div id="passwordError" style="color: red; font-size: 0.9em;"></div>
+                    <div id="passwordError" style="color: red; font-size: 0.9em;" aria-live="assertive"></div>
                     <button type="submit" aria-label="Créer un compte">Créer un compte</button>
                 </div>
             </form>
