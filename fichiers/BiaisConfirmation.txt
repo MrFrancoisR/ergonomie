@@ -1,4 +1,4 @@
-Le biais de confirmation
+##Le biais de confirmation
 
 Un biais cognitif est un raisonnement qui paraît intuitif mais qui conduit à un résultat erroné. Nous y sommes régulièrement confrontés dans notre quotidien, et de nombreux psychologues et chercheurs travaillent à les mettre en évidence. Cet essai a pour but de présenter l'un de ces biais : le biais de confirmation. Nous verrons dans un premier temps ce qu'est le biais de confirmation, le contexte dans lequel il agit, avant d'examiner des situations concrètes illustrant son application.
 
@@ -11,3 +11,5 @@ Le biais de confirmation n’est pas seulement présent dans les expériences de
 Ce mécanisme est également au cœur des théories du complot. Amplifié par Internet et les algorithmes des réseaux sociaux, il favorise la formation de bulles d’influence. Par exemple, une personne persuadée que la Terre est plate consultera préférentiellement des articles ou des forums confirmant son opinion. Si elle est confrontée à des arguments contraires, elle aura tendance à les ignorer ou à les rejeter comme peu crédibles.
 
 En conclusion, le biais de confirmation est un phénomène cognitif très répandu, pouvant avoir des conséquences significatives, notamment en matière de désinformation. Pour s’en prémunir, il est essentiel de vérifier les informations que nous recevons, d’examiner des points de vue opposés et de remettre en question nos croyances, même si cela peut être difficile.
+
+Baptiste Heard

@@ -133,8 +133,8 @@ function login(username, password) {
             // Redirige l'utilisateur vers la page d'accueil
             window.location.href = 'index.html';
         } else {
-            // Affiche une alerte en cas d'erreur
-            alert(data.error);
+            const errorDiv = document.getElementById('LoginError');
+            errorDiv.textContent = "Le couple login mot de passe ne correspond pas.";
         }
     })
     .catch(error => console.error('Erreur:', error));
