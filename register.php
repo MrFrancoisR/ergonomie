@@ -3,7 +3,7 @@ session_start();
 // Paramètres de connexion PostgreSQL
 $host = "localhost";
 $dbname = "Users";
-$user = "bheard"; 
+$user = "user"; 
 $password = "lannion"; 
 
 // Connexion à PostgreSQL

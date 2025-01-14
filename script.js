@@ -1,15 +1,13 @@
-// Fonction pour comparer un mot de passe en clair avec un hash bcrypt (utilisé côté serveur)
 function comparePassword(plainPassword, hashedPassword) {
-    return bcrypt.compareSync(plainPassword, hashedPassword); // Comparaison synchronisée
+    return bcrypt.compareSync(plainPassword, hashedPassword);
 }
 
 // Fonction pour gérer la déconnexion
 function logout() {
     localStorage.removeItem('username');
-    updateUI(); // Met à jour l'interface pour cacher le nom de l'utilisateur et afficher "Connexion"
+    updateUI(); 
 }
 
-// Fonction pour mettre à jour l'interface utilisateur
 function updateUI() {
     const username = localStorage.getItem('username');
     if (username) {
@@ -46,7 +44,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 // L'utilisateur est déconnecté
                 loginLink.style.display = 'inline';
                 userWelcome.style.display = 'none';
-                userWelcome.innerHTML = ''; // Réinitialise le contenu
+                userWelcome.innerHTML = '';
             }
         })
         .catch(error => console.error('Erreur :', error));
@@ -56,8 +54,8 @@ window.addEventListener('DOMContentLoaded', () => {
 function logout() {
     fetch('logout.php')
         .then(() => {
-            localStorage.removeItem('username'); // Supprime les données locales
-            window.location.reload(); // Recharge la page pour refléter l'état déconnecté
+            localStorage.removeItem('username'); 
+            window.location.reload(); 
         })
         .catch(error => console.error('Erreur lors de la déconnexion :', error));
 }
@@ -78,9 +76,7 @@ document.getElementById('registerForm').addEventListener('submit', function (eve
         return;
     }
 
-    errorDiv.textContent = ""; // Efface les erreurs
-
-    // Envoyer les données au script PHP
+    errorDiv.textContent = "";
     fetch('register.php', {
         method: 'POST',
         headers: {
@@ -95,14 +91,12 @@ document.getElementById('registerForm').addEventListener('submit', function (eve
             errorDiv.textContent = "Erreur : " + data.error;
         } else {
             console.log(data.message);
-            // Redirige l'utilisateur vers la page d'accueil
             window.location.href = 'index.html';
         }
     })
     .catch(error => console.error('Erreur :', error));
 });
 
-// Fonction pour enregistrer un utilisateur
 function registerUser(username, email, password) {
     fetch('http://localhost:3000/register', {
         method: 'POST',
@@ -122,15 +116,13 @@ function login(username, password) {
     fetch('login.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password }) // Utilise le username au lieu de l'email
+        body: JSON.stringify({ username, password }) 
     })
     .then(response => response.json())
     .then(data => {
         if (data.username) {
-            // Stocke le nom d'utilisateur dans le localStorage
             localStorage.setItem('username', data.username);
 
-            // Redirige l'utilisateur vers la page d'accueil
             window.location.href = 'index.html';
         } else {
             const errorDiv = document.getElementById('LoginError');
@@ -140,31 +132,26 @@ function login(username, password) {
     .catch(error => console.error('Erreur:', error));
 }
 
-// Charger la page d'accueil par défaut
 window.onload = function () {
-    updateUI(); // Vérifier si un utilisateur est déjà connecté au chargement de la page
+    updateUI();
     loadMarkdownFile('fichiers/accueil.txt');
 };
 
-// Fonction pour ouvrir la fenêtre modale de connexion
 function openLoginModal() {
     const modal = document.getElementById('loginModal');
-    modal.style.display = "block"; // Afficher la fenêtre modale
+    modal.style.display = "block"; 
 }
 
-// Fonction pour fermer la fenêtre modale de connexion
 function closeLoginModal() {
     const modal = document.getElementById('loginModal');
-    modal.style.display = "none"; // Cacher la fenêtre modale
+    modal.style.display = "none";
 }
 
-// Fonction pour basculer entre les formulaires de connexion et d'inscription
 function toggleModalForm() {
     const loginForm = document.getElementById('loginForm');
     const registerForm = document.getElementById('registerForm');
     const toggleMessage = document.getElementById('toggleMessage');
 
-    // Bascule entre les formulaires
     if (loginForm.style.display === "none") {
         loginForm.style.display = "block";
         registerForm.style.display = "none";
@@ -176,7 +163,6 @@ function toggleModalForm() {
     }
 }
 
-// Fermeture automatique de la modale si l'utilisateur clique en dehors de la fenêtre modale
 window.onclick = function(event) {
     const modal = document.getElementById('loginModal');
     if (event.target === modal) {

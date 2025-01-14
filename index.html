@@ -8,7 +8,6 @@
 </head>
 <body>
 
-    <!-- Navbar avec rôle de navigation -->
     <div class="navbar" role="navigation">
         <div class="logo" aria-label="Logo de l'entreprise">Logo</div>
         <div id="authLinks">
@@ -34,13 +33,11 @@
         </div>
     </div>
 
-    <!-- Fenêtre modale de connexion -->
     <div id="loginModal" class="modal" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
         <div class="modal-content">
             <span class="close" onclick="closeLoginModal()" aria-label="Fermer la fenêtre modale">&times;</span>
             <h2 id="modalTitle">Connexion</h2>
 
-            <!-- Formulaire de connexion -->
             <form id="loginForm" onsubmit="login(event)">
                 <div id="loginSection">
                     <label for="username">Nom d'utilisateur :</label>
@@ -55,7 +52,6 @@
                 </div>
             </form>
 
-            <!-- Formulaire d'inscription -->
             <form id="registerForm" style="display: none;">
                 <div id="registerSection">
                     <label for="newUsername">Nom d'utilisateur :</label>
@@ -74,14 +70,12 @@
                 </div>
             </form>
 
-            <!-- Boutons pour basculer entre les formulaires -->
             <div id="toggleSection">
                 <p id="toggleMessage">Pas encore de compte ? <a href="#" onclick="toggleModalForm()" aria-label="Passer à l'inscription">Créer un compte</a></p>
             </div>
         </div>
     </div>
 
-    <!-- Pied de page -->
     <footer>
         <p>© 2025 - Votre site d'information</p>
     </footer>
