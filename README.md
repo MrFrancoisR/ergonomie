@@ -1,7 +1,7 @@
 # Ergonomie
 Pour avoir accès à notre application. Il est nécessaire de créer une base de donée. 
 
-// Installation de postgresql
+// Installation de postgresql sous Linux
 sudo apt update
 sudo apt install postgresql postgresql-contrib
 sudo systemctl start postgresql
